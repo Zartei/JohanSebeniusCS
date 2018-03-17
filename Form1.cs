@@ -73,7 +73,7 @@ namespace windowsForms
             this.Text = pickedTown.CityName;
         }
 
-        // Function for quit label.
+        // Function for quit label
         private void label1_Click(object sender, EventArgs e)
         {
             this.Close();
