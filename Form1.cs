@@ -10,7 +10,12 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
-
+/*
+select max(price) as max, min(price) as min, AVG(price) as avg,count(*) as amount from amsterdam
+select max(price) as max, min(price) as min, AVG(price) as avg,count(*) as amount from boston
+select max(price) as max, min(price) as min, AVG(price) as avg,count(*) as amount from barcelona
+In city MaxPrice is set to 500
+ */
 namespace windowsForms
 {
     public partial class Form1 : Form
@@ -24,6 +29,8 @@ namespace windowsForms
         {
             InitializeComponent();
             GetConString();
+            PopWorld world2 = new PopWorld();
+
             Country netherlands = new Country("Netherlands", 45294, 17m);
             Country usAndA = new Country("USA", 57466, 343m);
             Country spain = new Country("Spain", 26528, 46m);
@@ -33,12 +40,27 @@ namespace windowsForms
             netherlands.addCity(amsterdam);
             usAndA.addCity(boston);
             spain.addCity(barcelona);
+            /*
+            bindingSource1.Add(boston);
+            bindingSource1.Add(barcelona);
+            bindingSource1.Add(amsterdam);
             world.Add(netherlands);
             world.Add(usAndA);
             world.Add(spain);
-            pickedTown = boston;
+            */
+            world = world2.world;
+
+            foreach (Country C in world)
+            {
+                foreach(City Ci in C.Cities)
+                {
+                    bindingSource1.Add(Ci);
+                    pickedTown = Ci;
+                }
+            }
+
             RePlot();
-            
+            BoxPlot();
         }
 
         private void GetConString()
@@ -57,7 +79,7 @@ namespace windowsForms
                 }
                 catch (Exception e)
                 {
-
+                    MessageBox.Show(e.ToString());
                 }
             }
             else
@@ -89,6 +111,7 @@ namespace windowsForms
 
             RePlot();
         }
+
         /*
          * Method plot for calling the selected chart type plotter.
          */
@@ -96,28 +119,35 @@ namespace windowsForms
         {
             if (plotSet)
             {
-                HisPlot(pickedTown);
+                ScatPlot(pickedTown);
             }
             else
             {
-                ScatPlot(pickedTown);
+                HistPlot(pickedTown);
             }
             SetTitle();
         }
 
         /*
-         * Private method ScatPlot (Scatter HisPlot)
+         * Private method for doing the histogram plot
          * Takes a City and updaes the chartPlot with the town data.
          */
-        private void ScatPlot(City town)
+        private void HistPlot(City town)
         {
             chartPlot.Series.Clear();
             chartPlot.Series.Add(town.CityName);
-            chartPlot.Name = "Test";
             chartPlot.Series[town.CityName].ChartType = SeriesChartType.Column;
             // var filterPrice = town.getAcc().Select(x => x.Price).Where(y => y >)
             int slice = 100;
-            var lookUp = town.getAcc().ToLookup(x => (int)x.Price / slice);
+            var filtered = town.getAcc().Where(x => x.Room_type == "Private room");
+            var refactored = filtered.Select(y => new { rest = y.Price % slice, y.Price }).Select(z => new { bucket = z.Price - z.rest });
+            var tes = refactored.GroupBy(g => new { g.bucket }).Select(group => new
+            {
+                Bucket = group.Key.bucket,
+                Count = group.Count()
+            }).OrderBy(ob => ob.Bucket);
+            // .Select(y => new { y.Price - (y.Price % slice) });
+            var lookUp = filtered.ToLookup(x => (int)x.Price / slice);
             var smallest = lookUp.Min(x => x.Key);
             var largest = lookUp.Max(x => x.Key);
             var Bucketed = from X in Enumerable.Range(smallest, largest - smallest + 1)
@@ -130,36 +160,28 @@ namespace windowsForms
             {
                 chartPlot.Series[town.CityName].Points.AddXY(X.Range, X.Count);
             }
-            /*
-            var groupedData = town.getAcc().GroupBy(x => new { x.Price }).Select(group => new
-            {
-                Bucket = group.Key.Price,
-                Count = group.Count(c => c.Price > 0)
-            }).OrderBy(ob => ob.Bucket).Where(i => i.Count > 2);
-           // var Buckets = town.getAcc().GroupBy(y => ranges.)
-            foreach (var X in groupedData)
-            {
-                chartPlot.Series[town.CityName].Points.AddXY(X.Count, X.Bucket);
-            }
-            */
+
+            chartPlot.ChartAreas[charAreaName].AxisX.MajorGrid.LineWidth = 0;
             chartPlot.ChartAreas[charAreaName].AxisX.IsMarginVisible = false;
             chartPlot.Series[town.CityName].ChartArea = charAreaName;
             chartPlot.ChartAreas[charAreaName].RecalculateAxesScale();
             chartPlot.ChartAreas[charAreaName].AxisY.Title = "Fequency";
             chartPlot.ChartAreas[charAreaName].AxisX.Title = "Price";
-            chartPlot.Series[town.CityName].IsVisibleInLegend = false;
+            chartPlot.Legends[0].IsDockedInsideChartArea = true;
+            chartPlot.Legends[0].DockedToChartArea = charAreaName;
         }
+
         /*
-         * Private method for doing the histogram plot
+         * Private method ScatPlot (Scatter HisPlot)
          * Takes a City and updaes the chartPlot with the town data.
          */
-        private void HisPlot(City town)
+        private void ScatPlot(City town)
         {
             chartPlot.Series.Clear();
             Series Minimum = chartPlot.Series.Add(town.CityName);
             chartPlot.Series[town.CityName].ChartType = SeriesChartType.Point;
 
-            var data = town.getAcc().Select(room => new { room.Price, room.Overall_satisfaction }).Where(sat => sat.Overall_satisfaction > 3);
+            var data = town.getAcc().Select(room => new { room.Price, room.Overall_satisfaction }).Where(sat => sat.Overall_satisfaction < 4.5);
 
             foreach (var X in data)
             {
@@ -169,7 +191,36 @@ namespace windowsForms
             chartPlot.Series[town.CityName].ChartArea = charAreaName;
             chartPlot.ChartAreas[charAreaName].AxisX.Title = "Price";
             chartPlot.ChartAreas[charAreaName].AxisY.Title = "Raiting";
-            chartPlot.Series[town.CityName].IsVisibleInLegend = false;
+            chartPlot.Legends[0].IsDockedInsideChartArea = true;
+            chartPlot.Legends[0].DockedToChartArea = charAreaName;
+        }
+        
+        private void BoxPlot()
+        {
+            chartPlot.Series.Clear();
+            Series Box = chartPlot.Series.Add(pickedTown.CityName);
+            Box.ChartType = SeriesChartType.BoxPlot;
+            Box["MinPixelPointWidth"] = "15";
+            Box["MaxPixelPointWidth"] = "25";
+            // chartPlot.Series[pickedTown.CityName].ChartType = SeriesChartType.BoxPlot;
+            var data = pickedTown.getAcc().Select(S => new { S.Overall_satisfaction, S.Price }).OrderBy(o => o.Overall_satisfaction) ;
+            var grpi = from Point in data
+                       group Point by Point.Overall_satisfaction into GO
+                       select new
+                       {
+                           Price = GO
+                       };
+
+            DataPoint dp = new DataPoint();
+            Series ds = new Series("Boxplot");
+
+            foreach(var point in data)
+            {
+                chartPlot.Series[pickedTown.CityName].Points.Add(new DataPoint(point.Overall_satisfaction, point.Price)); // AddXY(point.Overall_satisfaction, point.Price);
+            }
+            chartPlot.Series[pickedTown.CityName].BorderWidth = 3;
+            // chartPlot.
+            
         }
         /*
          * Private method to update the current City.
@@ -179,7 +230,7 @@ namespace windowsForms
         private void CityPicker(object sender, EventArgs e)
         {
             var lander = world.Select(x => new { Country = x.Cities });
-
+            
             foreach (Country count in world)
             {
                 var towns = count.Cities;
@@ -192,6 +243,12 @@ namespace windowsForms
                     }
                 }
             }
+        }
+
+        private void comboBoxSelectCity(object sender, EventArgs e)
+        {
+            pickedTown = comboBox1.SelectedItem as City;
+            RePlot();
         }
     }
 }

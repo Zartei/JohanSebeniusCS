@@ -51,7 +51,7 @@ namespace windowsForms
          */
         public void getRooms()
         {
-            string queryString = $"SELECT * FROM {CityName};";
+            string queryString = $"SELECT * FROM {CityName} where price < 500;";
             using (SqlConnection connection = new SqlConnection(ConnString.Conn))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
