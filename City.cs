@@ -25,7 +25,7 @@ namespace windowsForms
             Population = pop;
             getRooms();
             CountAccom = rooms.Count;
-            AvgCost = rooms.Average(x => x.Price);
+            AvgCost = rooms.Average(x => x.Price); 
         }
 
         public string CityName { get => cityName; set => cityName = value; }

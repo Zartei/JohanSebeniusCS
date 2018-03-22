@@ -60,9 +60,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(573, 395);
+            this.label1.Location = new System.Drawing.Point(429, 321);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 54);
+            this.label1.Size = new System.Drawing.Size(161, 44);
             this.label1.TabIndex = 0;
             this.label1.Text = "Quit";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,7 +80,8 @@
             this.chartPlot.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chartPlot.Legends.Add(legend1);
-            this.chartPlot.Location = new System.Drawing.Point(3, 3);
+            this.chartPlot.Location = new System.Drawing.Point(2, 2);
+            this.chartPlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chartPlot.Name = "chartPlot";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -87,7 +89,7 @@
             series1.Name = "data";
             series1.YValuesPerPoint = 2;
             this.chartPlot.Series.Add(series1);
-            this.chartPlot.Size = new System.Drawing.Size(564, 389);
+            this.chartPlot.Size = new System.Drawing.Size(423, 317);
             this.chartPlot.TabIndex = 1;
             this.chartPlot.Text = "Chart";
             // 
@@ -95,18 +97,19 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chartPlot, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 449);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 365);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -117,17 +120,19 @@
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.comboBox1);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(578, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(433, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(203, 384);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(152, 312);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 50);
+            this.button1.Size = new System.Drawing.Size(150, 41);
             this.button1.TabIndex = 0;
             this.button1.Text = "Boston";
             this.button1.UseVisualStyleBackColor = true;
@@ -136,9 +141,10 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(3, 59);
+            this.button2.Location = new System.Drawing.Point(2, 47);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 50);
+            this.button2.Size = new System.Drawing.Size(150, 41);
             this.button2.TabIndex = 1;
             this.button2.Text = "Amsterdam";
             this.button2.UseVisualStyleBackColor = true;
@@ -147,9 +153,10 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(3, 115);
+            this.button3.Location = new System.Drawing.Point(2, 92);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 50);
+            this.button3.Size = new System.Drawing.Size(150, 41);
             this.button3.TabIndex = 2;
             this.button3.Text = "Barcelona";
             this.button3.UseVisualStyleBackColor = true;
@@ -162,9 +169,10 @@
             this.comboBox1.DisplayMember = "CityName";
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 171);
+            this.comboBox1.Location = new System.Drawing.Point(2, 137);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 24);
+            this.comboBox1.Size = new System.Drawing.Size(149, 21);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.DropDownClosed += new System.EventHandler(this.comboBoxSelectCity);
             // 
@@ -174,9 +182,10 @@
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 177);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(2, 141);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(150, 81);
             this.flowLayoutPanel3.TabIndex = 4;
             // 
             // flowLayoutPanel2
@@ -184,16 +193,18 @@
             this.flowLayoutPanel2.Controls.Add(this.plotHisto);
             this.flowLayoutPanel2.Controls.Add(this.plotScatter);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 398);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 323);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(564, 48);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(423, 40);
             this.flowLayoutPanel2.TabIndex = 3;
             // 
             // plotHisto
             // 
-            this.plotHisto.Location = new System.Drawing.Point(3, 3);
+            this.plotHisto.Location = new System.Drawing.Point(2, 2);
+            this.plotHisto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.plotHisto.Name = "plotHisto";
-            this.plotHisto.Size = new System.Drawing.Size(166, 41);
+            this.plotHisto.Size = new System.Drawing.Size(124, 33);
             this.plotHisto.TabIndex = 0;
             this.plotHisto.Text = "Histogram";
             this.plotHisto.UseVisualStyleBackColor = true;
@@ -201,9 +212,10 @@
             // 
             // plotScatter
             // 
-            this.plotScatter.Location = new System.Drawing.Point(175, 3);
+            this.plotScatter.Location = new System.Drawing.Point(130, 2);
+            this.plotScatter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.plotScatter.Name = "plotScatter";
-            this.plotScatter.Size = new System.Drawing.Size(166, 41);
+            this.plotScatter.Size = new System.Drawing.Size(124, 33);
             this.plotScatter.TabIndex = 1;
             this.plotScatter.Text = "Scatter";
             this.plotScatter.UseVisualStyleBackColor = true;
@@ -211,10 +223,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 449);
+            this.ClientSize = new System.Drawing.Size(592, 365);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.chartPlot)).EndInit();

@@ -18,9 +18,9 @@ namespace windowsForms
             this.Name = Name;
             Gdp = Cap;
             Population = pop;
-        }
+        }// med denna Konstruction kan man skapa Country objekt utan city. //KIARASH//
 
-        
+
         public decimal Population { get => population; set => population = value; }
         public string Name { get => name; set => name = value; }
         public int Gdp { get => gdp; set => gdp = value; }
@@ -33,6 +33,6 @@ namespace windowsForms
         public void addCity(City city)
         {
             cities.Add(city);
-        }
+        }// behöver man skapa en method när man kan väl använda .add() direkt? //KIARASH//
     }
 }
