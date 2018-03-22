@@ -18,7 +18,7 @@ namespace windowsForms
             this.Name = Name;
             Gdp = Cap;
             Population = pop;
-        }// med denna Konstruction kan man skapa Country objekt utan city. //KIARASH//
+        }// med denna konsturktur kan man skapa Country objekt utan city. //KIARASH//
 
 
         public decimal Population { get => population; set => population = value; }

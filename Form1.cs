@@ -39,7 +39,7 @@ namespace windowsForms
             City barcelona = new City("Barcelona", 13, 13, 1600000);
             netherlands.addCity(amsterdam);
             usAndA.addCity(boston);
-            spain.addCity(barcelona);
+            spain.addCity(barcelona); // Första city kan läggas till med hjälp av konstrukturn och sen används add funktion för att lägga ytterligare cities. //KIARASH//
             /*
             bindingSource1.Add(boston);
             bindingSource1.Add(barcelona);
@@ -48,7 +48,7 @@ namespace windowsForms
             world.Add(usAndA);
             world.Add(spain);
             */
-            world = world2.world;
+            world = world2.world; // bra att samla alla Country i en World lista  //KIARASH//
 
             foreach (Country C in world)
             {
@@ -251,4 +251,4 @@ namespace windowsForms
             RePlot();
         }
     }
-}
+} // Fint skriven kod och bra att det finns kommentarer som förklarar vad metoden gör  //KIARASH//
